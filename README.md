@@ -2,6 +2,10 @@
 
 Small first-draft utility for downloading BIRD benchmark data from Hugging Face.
 
+## Project context
+
+This work starts from the Harbor dataset snapshot and creates a Danish equivalent by translating instruction files while keeping the underlying task/data structure aligned with the original benchmark format.
+
 ## Requirements
 
 - Python 3.13+
