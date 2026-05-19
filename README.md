@@ -39,6 +39,12 @@ uv run python download.py \
 	--allow-pattern "datasets/another-subset/**"
 ```
 
+Run Harbor benchmark:
+
+```bash
+uv run harbor run -p data/da-bird-bench -a terminus-2 -m openai/o4-mini
+```
+
 ## Notes
 
 - `data/`, `jobs/`, and downloaded dataset folders are ignored in git.
