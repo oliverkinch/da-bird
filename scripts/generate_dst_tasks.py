@@ -9,7 +9,7 @@ Generation flow per task:
   6. Scaffold a harbor task folder.
 
 Usage:
-    uv run python scripts/05_generate_dst_tasks.py \
+    uv run python scripts/generate_dst_tasks.py \
         --out-dir data/dst \
         --model gpt-5.5 \
         --n-per-table 10

@@ -8,8 +8,8 @@ Steps:
   5. Upload to HuggingFace
 
 Usage:
-    HF_TOKEN=hf_... uv run python scripts/07_push_to_hf.py
-    HF_TOKEN=hf_... uv run python scripts/07_push_to_hf.py --skip-merge  # if data/merged/ already exists
+    HF_TOKEN=hf_... uv run python scripts/push_to_hf.py
+    HF_TOKEN=hf_... uv run python scripts/push_to_hf.py --skip-merge  # if data/merged/ already exists
 """
 
 from __future__ import annotations

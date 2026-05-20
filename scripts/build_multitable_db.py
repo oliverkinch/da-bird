@@ -8,7 +8,7 @@ Both share OMRÅDE (municipality name), enabling JOIN queries.
 Generates 10 hard tasks using join-based SQL patterns.
 
 Usage:
-    uv run python scripts/06_build_multitable_db.py \
+    uv run python scripts/build_multitable_db.py \
         --out-dir data/dst-v2-hard \
         --model gpt-5.5 \
         --n-tasks 10
