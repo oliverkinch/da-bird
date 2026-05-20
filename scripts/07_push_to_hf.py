@@ -25,7 +25,7 @@ MERGED_DIR = Path("data/merged")
 BIRD_SRC = Path("data/da-bird-bench")
 DST_SRC = Path("data/dst-v2-hard")
 HF_REPO = "oliverkinch/da-bird"
-HF_PATH_IN_REPO = "datasets/da-bird"
+HF_PATH_IN_REPO = ""
 
 README = """\
 ---
@@ -143,7 +143,7 @@ def write_readme() -> None:
     print(f"Written {readme_path}")
 
 
-def upload(token: str) -> None:
+def upload(token: str, delete_datasets_folder: bool = False) -> None:
     from huggingface_hub import HfApi
 
     api = HfApi(token=token)
@@ -151,8 +151,22 @@ def upload(token: str) -> None:
     print(f"Creating repo {HF_REPO} (if not exists)...")
     api.create_repo(HF_REPO, repo_type="dataset", exist_ok=True, private=False)
 
+    if delete_datasets_folder:
+        print("Deleting existing datasets/ folder from HF repo...")
+        try:
+            api.delete_folder(
+                path_in_repo="datasets",
+                repo_id=HF_REPO,
+                repo_type="dataset",
+                commit_message="Remove datasets/ nesting — task folders move to root",
+            )
+            print("  Deleted.")
+        except Exception as e:
+            print(f"  Could not delete (may not exist): {e}")
+
     task_count = sum(1 for p in MERGED_DIR.iterdir() if p.is_dir())
-    print(f"Uploading {task_count} task folders + README to {HF_REPO}/{HF_PATH_IN_REPO} ...")
+    path_label = HF_PATH_IN_REPO or "(repo root)"
+    print(f"Uploading {task_count} task folders + README to {HF_REPO}/{path_label} ...")
     print("This may take 30–90 minutes for ~21 GB. The call is resumable if interrupted.")
 
     api.upload_folder(
@@ -160,7 +174,7 @@ def upload(token: str) -> None:
         repo_type="dataset",
         folder_path=str(MERGED_DIR),
         path_in_repo=HF_PATH_IN_REPO,
-        commit_message=f"Add merged da-bird-bench + dst-v2-hard ({task_count} tasks)",
+        commit_message=f"Upload {task_count} tasks at repo root (da-bird-bench + dst-v2-hard)",
     )
     print(f"\nDone! https://huggingface.co/datasets/{HF_REPO}")
 
@@ -171,6 +185,8 @@ def main() -> None:
                         help="Skip building data/merged/ (use existing)")
     parser.add_argument("--no-upload", action="store_true",
                         help="Build data/merged/ but do not upload to HF")
+    parser.add_argument("--delete-datasets-folder", action="store_true",
+                        help="Delete existing datasets/ folder from HF repo before uploading")
     args = parser.parse_args()
 
     token = os.environ.get("HF_TOKEN")
@@ -184,7 +200,7 @@ def main() -> None:
     if args.no_upload:
         print(f"\nMerged dataset ready at {MERGED_DIR}/ — skipping upload (--no-upload)")
     else:
-        upload(token)
+        upload(token, delete_datasets_folder=args.delete_datasets_folder)
 
 
 if __name__ == "__main__":
