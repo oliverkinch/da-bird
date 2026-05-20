@@ -100,7 +100,7 @@ The `dst_*` tasks are purpose-built Danish NL2SQL tasks created from open statis
 
 **Generation methodology (SQL-first):**
 
-Tasks were generated using a SQL-first pipeline implemented in `scripts/05_generate_dst_tasks_v2.py` and `scripts/06_build_multitable_db.py`:
+Tasks were generated using a SQL-first pipeline (source: [oliverkinch/da-bird](https://github.com/oliverkinch/da-bird)):
 
 1. A SQL pattern is sampled for the target difficulty (window functions, CTEs, correlated subqueries, JOINs, etc.)
 2. An LLM (GPT-4.5) generates a concrete SQL query following the pattern, given the real schema and sample data

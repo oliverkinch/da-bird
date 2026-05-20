@@ -9,8 +9,8 @@ Generation flow per task:
   6. Scaffold a harbor task folder.
 
 Usage:
-    uv run python scripts/05_generate_dst_tasks_v2.py \
-        --out-dir data/dst-v2 \
+    uv run python scripts/05_generate_dst_tasks.py \
+        --out-dir data/dst \
         --model gpt-5.5 \
         --n-per-table 10
 """
@@ -264,11 +264,11 @@ TASK_TOML_TEMPLATE = """\
 version = "1.0"
 
 [metadata]
-author_name = "da-bird-v2"
+author_name = "da-bird"
 author_email = ""
 difficulty = "{difficulty}"
 category = "database"
-tags = ["nl2sql", "da-bird", "da-bird-v2", "text-to-sql", "sql", "dansk", "dst", "{difficulty}"]
+tags = ["nl2sql", "da-bird", "text-to-sql", "sql", "dansk", "dst", "{difficulty}"]
 source = "Danmarks Statistik / {dst_table}"
 db_id = "{db_id}"
 source_id = "{source_id}"

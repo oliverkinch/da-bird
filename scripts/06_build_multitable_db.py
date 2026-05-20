@@ -56,11 +56,11 @@ TASK_TOML_TEMPLATE = """\
 version = "1.0"
 
 [metadata]
-author_name = "da-bird-v2"
+author_name = "da-bird"
 author_email = ""
 difficulty = "hard"
 category = "database"
-tags = ["nl2sql", "da-bird", "da-bird-v2", "text-to-sql", "sql", "dansk", "dst", "hard", "join"]
+tags = ["nl2sql", "da-bird", "text-to-sql", "sql", "dansk", "dst", "hard", "join"]
 source = "Danmarks Statistik / FOLK1A+BOL101"
 db_id = "{db_id}"
 source_id = "{source_id}"
