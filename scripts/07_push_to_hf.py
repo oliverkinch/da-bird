@@ -269,7 +269,6 @@ def upload(token: str, delete_datasets_folder: bool = False) -> None:
         repo_id=HF_REPO,
         repo_type="dataset",
         folder_path=str(MERGED_DIR),
-        path_in_repo=HF_PATH_IN_REPO,
     )
     print(f"\nDone! https://huggingface.co/datasets/{HF_REPO}")
 
