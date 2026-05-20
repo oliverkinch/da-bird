@@ -147,12 +147,6 @@ huggingface-cli download oliverkinch/da-bird --repo-type dataset --local-dir dat
 
 # Run evaluation (requires Harbor)
 uv run harbor run -p data/da-bird -a terminus-2 -m openai/o4-mini
-
-# Evaluate only DST tasks
-uv run harbor run -p data/da-bird -a terminus-2 -m openai/o4-mini --allow-pattern "dst_*"
-
-# Evaluate only BIRD tasks
-uv run harbor run -p data/da-bird -a terminus-2 -m openai/o4-mini --allow-pattern "bird_*"
 ```
 
 ---
